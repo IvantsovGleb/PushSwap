@@ -24,35 +24,31 @@ static int     parse_long(const char *str, int *si)
 static int      duplicates(t_list *lst)
 {
     t_list  *tmp;
-    t_list  *travers;
+    t_list  *traverse;
 
     tmp = lst;
     while (tmp)
     {
-        travers = tmp->next;
-        while (travers)
+        traverse = tmp->next;
+        while (traverse)
         {
-            if (*(int *)(tmp->content) == *(int *)(travers->content))
+            if (*(int *)(tmp->content) == *(int *)(traverse->content))
                 return (1);
             else
-                travers = travers->next;
+                traverse = traverse->next;
         }
         tmp = tmp->next;
     }
     return (0);
 }
 
-static t_list   *init_stack(int n, char *args[])
+t_list      *init(t_list **stack, char *args[])
 {
-    t_list  *stack;
     t_list  *tmp;
     int     *arg;
 
-    stack = create_list(n);
-    if (!stack || !args)
-        return ((void *) 0);
-    tmp = stack;
-    while (*args && tmp)
+    tmp = *stack;
+    while (*stack && *args && tmp)
     {
         arg = malloc(sizeof(int));
         if (arg && parse_long(*args++, arg))
@@ -63,33 +59,10 @@ static t_list   *init_stack(int n, char *args[])
         else
         {
             free(arg);
-            handle_error(&stack);
-            break ;
+            handle_error(stack);
         }
     }
-    return (stack);
-}
-
-t_list  *init(int argc, char *argv[])
-{
-    char    **args;
-    t_list  *stack_a;
-    int     n;
-
-    stack_a = (void *) 0;
-    if (argc == 2)
-    {
-        args = ft_split(argv[1], ' ');
-        if (args)
-        {
-            n = count_args(argv[1]);
-            stack_a = init_stack(n, args);
-            memfree(args);
-        }
-    }
-    else
-        stack_a = init_stack(argc - 1, ++argv);
-    if (stack_a && duplicates(stack_a))
-        handle_error(&stack_a);
-    return (stack_a);
+    if (duplicates(*stack))
+        handle_error(stack);
+    return (*stack);
 }

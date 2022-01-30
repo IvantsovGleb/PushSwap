@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_list  *create_list(int n)
+t_list  *create_stack(int n)
 {
     t_list  *head;
     t_list  *new;
@@ -26,30 +26,6 @@ t_list  *create_list(int n)
     return (head);
 }
 
-int     count_args(const char *s)
-{
-    int	count;
-    size_t	i;
-
-    count = 0;
-    i = 0;
-    while (s[i])
-    {
-        if ((s[i + 1] && s[i] != ' ' && s[i + 1] == ' ')
-            || (s[i] != ' ' && !s[i + 1]))
-            count++;
-        i++;
-    }
-    return (count);
-}
-
-void    handle_error(t_list **stack)
-{
-    ft_lstclear(stack, free);
-    write(2, "Error\n", 6);
-    *stack = (void *) 0;
-}
-
 void    memfree(char **args)
 {
     int     i;
@@ -58,6 +34,32 @@ void    memfree(char **args)
     while (args[i])
         free(args[i++]);
     free(args);
+}
+
+char    **split(const char *s, int *n)
+{
+    size_t	i;
+    char    **args;
+
+    args = ft_split(s, ' ');
+    if (!args)
+        return ((void *) 0);
+    i = 0;
+    while (s[i])
+    {
+        if ((s[i + 1] && s[i] != ' ' && s[i + 1] == ' ')
+            || (s[i] != ' ' && !s[i + 1]))
+            (*n)++;
+        i++;
+    }
+    return (args);
+}
+
+void    handle_error(t_list **stack)
+{
+    ft_lstclear(stack, free);
+    write(2, "Error\n", 6);
+    *stack = (void *) 0;
 }
 
 void     print_list(t_list *lst)

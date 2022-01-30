@@ -6,7 +6,7 @@ void    sa(t_list **stack_a)
 
     if (!(*stack_a && (*stack_a)->next))
         return ;
-    first = (*stack_a);
+    first = *stack_a;
     *stack_a = (*stack_a)->next;
     ft_lstadd_front(&(*stack_a)->next, first);
 }
