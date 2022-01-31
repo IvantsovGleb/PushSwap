@@ -62,11 +62,11 @@ void    handle_error(t_list **stack)
     *stack = (void *) 0;
 }
 
-void     print_list(t_list *lst)
+void     print_list(t_list *a)
 {
     t_list  *tmp;
 
-    tmp = lst;
+    tmp = a;
     while (tmp)
     {
         printf("%d\n", *((int *)(tmp->content)));

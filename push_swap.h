@@ -17,6 +17,8 @@ char        **split(const char *s, int *n);
 //**************
 
 t_list      *init(t_list **stack, char *args[]);
+t_list      *sort_stack(t_list **stack_a);
+
 
 void        sa(t_list **stack_a);
 void        sb(t_list **stack_b);
