@@ -3,26 +3,17 @@
 void    push_swap(int n, char **args)
 {
     t_list  *stack_a;
+    t_list  *stack_b;
 
     stack_a = create_stack(n);
     if (stack_a)
     {
         init(&stack_a, args);
+        stack_b = (void *) 0;
+        sort(&stack_a, &stack_b);
 
-//        printf("\n");
 //        print_list(stack_a);
 //        printf("-\na\n\n");
-
-        sort_stack(&stack_a);
-
-//        printf("\n");
-//        print_list(stack_a);
-//        printf("-\na\n\n");
-
-
-//        printf("\n");
-//        print_list(stack_a);
-//        printf("\n");
     }
     ft_lstclear(&stack_a, free);
 }

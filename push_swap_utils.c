@@ -67,6 +67,7 @@ void     print_list(t_list *a)
     t_list  *tmp;
 
     tmp = a;
+    printf("\n");
     while (tmp)
     {
         printf("%d\n", *((int *)(tmp->content)));
