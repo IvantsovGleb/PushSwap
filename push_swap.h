@@ -1,9 +1,15 @@
-# ifndef PUSH_SWAP_H
+#ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
 # include <limits.h>
 # include <stdio.h>
+
+typedef struct s_bool
+{
+    FALSE,
+    TRUE
+}       t_bool;
 
 // temporary
 void     print_list(t_list *lst);
@@ -33,4 +39,5 @@ void        rr(t_list **stack_a, t_list **stack_b);
 void        rra(t_list **stack_a);
 void        rrb(t_list **stack_b);
 void        rrr(t_list **stack_a, t_list **stack_b);
+
 #endif
