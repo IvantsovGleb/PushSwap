@@ -5,25 +5,36 @@
 # include <limits.h>
 # include <stdio.h>
 
-typedef struct s_bool
+typedef enum e_bool
 {
     FALSE,
     TRUE
 }       t_bool;
 
-// temporary
+typedef struct s_number
+{
+    unsigned long    nbr;
+    int             sign;
+}                   t_number;
+
+typedef struct s_arg
+{
+    char    **params;
+    int     n;
+}           t_arg;
+
+/* tmp                          */
 void     print_list(t_list *lst);
-//***************
+/*                              */
 
-// utils
+t_bool      extract_params(int argc, char *argv[], t_arg *arg);
+int         parse_int(const char *s, int *i);
+
 t_list      *create_stack(int n);
-void        memfree(char **args);
-void        handle_error(t_list **stack);
-char        **split(const char *s, int *n);
-//**************
 
-t_list      *init(t_list **stack, char *args[]);
-t_list      *sort(t_list **stack_a, t_list **stack_b);
+int         error(const char *message);
+
+int         *init_array(t_arg *arg);
 
 void        sa(t_list **stack_a);
 void        sb(t_list **stack_b);
