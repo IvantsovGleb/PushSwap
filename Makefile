@@ -5,7 +5,7 @@ rm = rm -rf
 
 NAME = push_swap
 
-src = libft/ft_*.c params.c parse.c init_array.c main.c push_swap_utils.c
+src = libft/ft_*.c params.c parse.c init_array.c init_stack.c main.c push_swap_utils.c
 
 all: $(NAME)
 

@@ -13,7 +13,7 @@ typedef enum e_bool
 
 typedef struct s_number
 {
-    unsigned long    nbr;
+    unsigned long   nbr;
     int             sign;
 }                   t_number;
 
@@ -23,18 +23,14 @@ typedef struct s_arg
     int     n;
 }           t_arg;
 
-/* tmp                          */
-void     print_list(t_list *lst);
-/*                              */
+int         error(const char *message);
 
 t_bool      extract_params(int argc, char *argv[], t_arg *arg);
 int         parse_int(const char *s, int *i);
 
-t_list      *create_stack(int n);
-
-int         error(const char *message);
-
 int         *init_array(t_arg *arg);
+t_list      *init_stack(int *array, int n);
+
 
 void        sa(t_list **stack_a);
 void        sb(t_list **stack_b);
