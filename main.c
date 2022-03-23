@@ -13,12 +13,12 @@ int     main(int argc, char *argv[])
         return (0);
     stack = init_stack(array, arg.n);
     if (!stack)
-        return (0);
-    t_list  *p_lst = stack;
-    while (p_lst)
     {
-        printf("%d\n", *(int *)p_lst->content);
-        p_lst = p_lst->next;
+        free_array(&array);
+        return (0);
     }
+    push_swap(&stack);
+    free_array(&array);
+    free_stack(&stack);
     return (0);
 }

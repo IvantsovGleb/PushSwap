@@ -27,7 +27,7 @@ static int  *get_helper_array(char *params[], int n)
     int *array;
     int i;
 
-    array = malloc( (n - 1) * sizeof(*array));
+    array = malloc( n * sizeof(*array));
     if (!array)
         return ((void *) 0);
     i = 0;
@@ -49,7 +49,7 @@ static void    swap(int *from, int *to)
     *from = tmp;
 }
 
-static void    bubble_sort(int *array, int n)
+void    bubble_sort(int *array, int n)
 {
     int i;
     int j;
@@ -75,12 +75,12 @@ int *init_array(t_arg *arg)
     array = get_helper_array(arg->params, arg->n);
     if (!array)
     {
-        return ((void *) 0);
+        return (null_error("Error\n"));
     }
     if (!duplicates(array, arg->n))
     {
-        return (free_array(&array));
+        free_array(&array);
+        return (null_error("Error\n"));
     }
-    bubble_sort(array, arg->n);
     return (array);
 }

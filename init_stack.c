@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static t_list   *generate_stack(int *array, int n)
+static t_list   *generate_stack(int *ia, int n)
 {
     t_list  *head;
     t_list  *new;
@@ -12,10 +12,10 @@ static t_list   *generate_stack(int *array, int n)
     i = 0;
     while (i < n)
     {
-        i_el = malloc(sizeof(*array));
+        i_el = malloc(sizeof(*ia));
         if (!i_el)
             return (free_stack(&head));
-        *i_el = array[i];
+        *i_el = ia[i];
         new = ft_lstnew((void *)i_el);
         if (!new)
             return (free_stack(&head));
@@ -27,12 +27,64 @@ static t_list   *generate_stack(int *array, int n)
     return (head);
 }
 
-t_list  *init_stack(int *array, int n)
+static int  *get_sorted_copy(const int *ia, int n)
+{
+    int *ia_copy;
+
+    ia_copy = malloc(n * sizeof(*ia_copy));
+    if (!ia_copy)
+        return ((void *) 0);
+    ft_memcpy(ia_copy, ia, n * sizeof(*ia));
+    bubble_sort(ia_copy, n);
+    return (ia_copy);
+}
+
+int *generate_index_array(const int *ia, const int *ia_cp, int n)
+{
+    int *ind_a;
+    int j;
+    int i;
+
+    ind_a = malloc(n * sizeof(*ind_a));
+    if (!ind_a)
+        return ((void *) 0);
+    i = 0;
+    while (i < n)
+    {
+        j = 0;
+        while (j < n)
+        {
+            if (ia_cp[i] == ia[j])
+            {
+                ind_a[j] = i;
+                break ;
+            }
+            j++;
+        }
+        i++;
+    }
+    return (ind_a);
+}
+
+t_list  *init_stack(int *ia, int n)
 {
     t_list  *stack_a;
+    int     *ind_a;
+    int     *ia_cp;
 
-    stack_a = generate_stack(array, n);
-    if (!stack_a)
+    ia_cp = get_sorted_copy(ia, n);
+    if (!ia_cp)
         return ((void *) 0);
+    ind_a = generate_index_array(ia, ia_cp, n);
+    if (!ind_a)
+        return (free_array(&ia_cp));
+    stack_a = generate_stack(ind_a, n);
+    if (!stack_a)
+    {
+        free(ia_cp);
+        return (free_array(&ind_a));
+    }
+    free(ia_cp);
+    free(ind_a);
     return (stack_a);
 }

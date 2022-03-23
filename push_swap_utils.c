@@ -20,3 +20,11 @@ int     error(const char *message)
     write(2, message, ft_strlen(message));
     return (0);
 }
+
+void    *null_error(const char *message)
+{
+    if (!message)
+        return ((void *) 0);
+    write(2, message, ft_strlen(message));
+    return ((void *) 0);
+}

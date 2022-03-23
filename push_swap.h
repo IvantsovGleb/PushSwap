@@ -3,7 +3,10 @@
 
 # include "libft/libft.h"
 # include <limits.h>
+
+/* delete   */
 # include <stdio.h>
+/*          */
 
 typedef enum e_bool
 {
@@ -23,13 +26,12 @@ typedef struct s_arg
     int     n;
 }           t_arg;
 
-int         error(const char *message);
-void        *free_array(int **array);
-void        *free_stack(t_list **lst);
-
 t_bool      extract_params(int argc, char *argv[], t_arg *arg);
 int         parse_int(const char *s, int *i);
 
+void        push_swap(t_list **stack_a);
+
+void        bubble_sort(int *array, int n);
 int         *init_array(t_arg *arg);
 t_list      *init_stack(int *array, int n);
 
@@ -48,5 +50,10 @@ void        rr(t_list **stack_a, t_list **stack_b);
 void        rra(t_list **stack_a);
 void        rrb(t_list **stack_b);
 void        rrr(t_list **stack_a, t_list **stack_b);
+
+int         error(const char *message);
+void        *null_error(const char *message);
+void        *free_array(int **array);
+void        *free_stack(t_list **lst);
 
 #endif
