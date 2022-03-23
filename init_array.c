@@ -34,7 +34,7 @@ static int  *get_helper_array(char *params[], int n)
     while (params[i])
     {
         if (!parse_int(params[i], &array[i]))
-            return (array);
+            return (free_array(&array));
         i++;
     }
     return (array);
@@ -75,13 +75,11 @@ int *init_array(t_arg *arg)
     array = get_helper_array(arg->params, arg->n);
     if (!array)
     {
-        free(array);
         return ((void *) 0);
     }
     if (!duplicates(array, arg->n))
     {
-        free(array);
-        return ((void *) 0);
+        return (free_array(&array));
     }
     bubble_sort(array, arg->n);
     return (array);

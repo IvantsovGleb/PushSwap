@@ -1,11 +1,5 @@
 #include "push_swap.h"
 
-static t_list   *handle_error(t_list **lst)
-{
-    ft_lstclear(lst, free);
-    return ((void *) 0);
-}
-
 static t_list   *generate_stack(int *array, int n)
 {
     t_list  *head;
@@ -20,11 +14,11 @@ static t_list   *generate_stack(int *array, int n)
     {
         i_el = malloc(sizeof(*array));
         if (!i_el)
-            return (handle_error(&head));
+            return (free_stack(&head));
         *i_el = array[i];
         new = ft_lstnew((void *)i_el);
         if (!new)
-            return (handle_error(&head));
+            return (free_stack(&head));
         ft_lstadd_back(&head, new);
         i++;
     }

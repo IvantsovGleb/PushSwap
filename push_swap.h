@@ -24,6 +24,8 @@ typedef struct s_arg
 }           t_arg;
 
 int         error(const char *message);
+void        *free_array(int **array);
+void        *free_stack(t_list **lst);
 
 t_bool      extract_params(int argc, char *argv[], t_arg *arg);
 int         parse_int(const char *s, int *i);
