@@ -75,12 +75,12 @@ int *init_array(t_arg *arg)
     array = get_helper_array(arg->params, arg->n);
     if (!array)
     {
-        return (null_error("Error\n"));
+        return (error("Error\n"));
     }
     if (!duplicates(array, arg->n))
     {
         free_array(&array);
-        return (null_error("Error\n"));
+        return (error("Error\n"));
     }
     return (array);
 }

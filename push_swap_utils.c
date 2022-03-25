@@ -12,19 +12,19 @@ void    *free_stack(t_list **lst)
     return ((void *) 0);
 }
 
-
-int     error(const char *message)
+void    mem_free(char **data)
 {
-    if (!message)
-        return (0);
-    write(2, message, ft_strlen(message));
-    return (0);
+    int i;
+
+    i = 0;
+    while (data[i])
+        free(data[i++]);
+    free(data);
 }
 
-void    *null_error(const char *message)
+void    *error(const char *message)
 {
-    if (!message)
-        return ((void *) 0);
-    write(2, message, ft_strlen(message));
+    if (message)
+        write(2, message, ft_strlen(message));
     return ((void *) 0);
 }

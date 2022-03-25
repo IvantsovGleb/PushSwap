@@ -13,7 +13,7 @@ static int     count_params(char **params)
 t_bool  extract_params(int argc, char *argv[], t_arg *arg)
 {
     if (argc < 2)
-        return (error((void *) 0));
+        return (FALSE);
     if (argc == 2)
     {
         arg->params = ft_split(argv[1], ' ');
@@ -26,5 +26,3 @@ t_bool  extract_params(int argc, char *argv[], t_arg *arg)
     }
     return (TRUE);
 }
-
-

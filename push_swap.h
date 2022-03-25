@@ -53,9 +53,9 @@ void    rra(t_list **stack_a);
 void    rrb(t_list **stack_b);
 void    rrr(t_list **stack_a, t_list **stack_b);
 
-int     error(const char *message);
-void    *null_error(const char *message);
+void    *error(const char *message);
 void    *free_array(int **array);
 void    *free_stack(t_list **lst);
+void    mem_free(char **data);
 
 #endif

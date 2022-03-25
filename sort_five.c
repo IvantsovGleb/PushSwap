@@ -20,71 +20,13 @@ static int  find_pos(t_list **stack_a, int stack_b_top)
     return (count);
 }
 
-//static void insert_elem(t_list **stack_a, t_list **stack_b)
-//{
-//    int count;
-//    int count_cp;
-//
-//    if (*stack_b == (void *) 0)
-//        return ;
-//    printf("inserting elem=%d\n", *(int *)((*stack_b)->content));
-//    count = find_pos(stack_a, *(int *)((*stack_b)->content));
-//    if (count == 0)
-//        pa(stack_a, stack_b);
-//    else if (count < ft_lstsize(*stack_a))
-//    {
-//        count_cp = count;
-//        printf("-----------\n");
-//        while (count-- > 0)
-//            ra(stack_a);
-//        pa(stack_a, stack_b);
-//        count = 0;
-//        while (count < count_cp)
-//        {
-//            rra(stack_a);
-//            count++;
-//        }
-//        printf("-----------\n");
-//    }
-//    else if (count == ft_lstsize(*stack_a))
-//    {
-//        pa(stack_a, stack_b);
-//        ra(stack_a);
-//    }
-//}
-
-static void insert_elem(t_list **stack_a, t_list **stack_b)
+static void insert_el(t_list **stack_a, t_list **stack_b)
 {
     int count;
-    int count_cp;
 
-    count = find_pos(stack_a, *(int *)((*stack_b)->content));
+    count = find_pos(stack_a,  *(int *)((*stack_b)->content));
     if (count == 0)
-    {
         pa(stack_a, stack_b);
-    }
-    else if (count < ft_lstsize(*stack_a))
-    {
-        count_cp = count;
-        while (count-- > 0)
-            ra(stack_a);
-        pa(stack_a, stack_b);
-        count = 0;
-        while (count < count_cp)
-        {
-            if (*stack_b)
-            {
-                if (find_pos(stack_a, *(int *) ((*stack_b)->content)) == 0)
-                {
-                    pa(stack_a, stack_b);
-                    rra(stack_a);
-                }
-            }
-            else
-                rra(stack_a);
-            count++;
-        }
-    }
     else if (count == ft_lstsize(*stack_a))
     {
         pa(stack_a, stack_b);
@@ -92,17 +34,46 @@ static void insert_elem(t_list **stack_a, t_list **stack_b)
     }
 }
 
+static int  search_index(t_list *stack, int el)
+{
+    t_list  *p_stack;
+    int     count;
+
+    count = 0;
+    p_stack = stack;
+    while(p_stack)
+    {
+        if (el == *(int *)(p_stack->content))
+            return (count);
+        else
+            count++;
+        p_stack = p_stack->next;
+    }
+    return (-1);
+}
+
 void sort_five(t_list **stack_a, t_list **stack_b)
 {
-    int first;
-    int second;
+    int min_index;
+    int max_index;
 
+    min_index = search_index(*stack_a, 0);
+    while (min_index-- > 0)
+    {
+        if (*(int *)(*stack_a)->content == 4)
+            pb(stack_a, stack_b);
+        else
+            ra(stack_a);
+    }
     pb(stack_a, stack_b);
-    pb(stack_a, stack_b);
-    first = *(int *)((*stack_b)->content);
-    second = *(int *)((*stack_b)->next->content);
-    if (first < second)
-        sb(stack_b);
+    max_index = search_index(*stack_a, 4);
+    if (max_index != -1)
+    {
+        while (max_index-- > 0)
+            ra(stack_a);
+        pb(stack_a, stack_b);
+    }
     sort_three(stack_a);
-    insert_elem(stack_a, stack_b);
+    insert_el(stack_a, stack_b);
+    insert_el(stack_a, stack_b);
 }

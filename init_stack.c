@@ -39,7 +39,7 @@ static int  *get_sorted_copy(const int *ia, int n)
     return (ia_copy);
 }
 
-int *generate_index_array(const int *ia, const int *ia_cp, int n)
+static int *generate_index_array(const int *ia, const int *ia_cp, int n)
 {
     int *ind_a;
     int j;
