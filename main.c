@@ -35,6 +35,8 @@ int     main(int argc, char *argv[])
     int     *array;
     t_list  *stack;
 
+    array = (void *) 0;
+    stack = (void *) 0;
     if (!extract_params(argc, argv, &arg))
         return (0);
     array = init_array(&arg);

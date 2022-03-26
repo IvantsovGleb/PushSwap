@@ -7,7 +7,7 @@ static int      count_bits(int num)
 
     count = 0;
     i = 0;
-    while (i < (int)(sizeof(int) * 8))
+    while (i < (int)(sizeof(int) * 2))
     {
         if (num & (1 << i))
         {
