@@ -4,10 +4,6 @@
 # include "libft/libft.h"
 # include <limits.h>
 
-/* delete   */
-# include <stdio.h>
-/*          */
-
 typedef enum e_bool
 {
     FALSE,

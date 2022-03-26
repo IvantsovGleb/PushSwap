@@ -16,15 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define ULONG_MAX  (~0UL)
-# define LONG_MAX   ((long)(ULONG_MAX >> 1))
-# define LONG_MIN   (~LONG_MAX)
-# define UINT_MAX   (~0U)
-# define INT_MAX    ((int)(UINT_MAX >> 1))
-# define INT_MIN    (~INT_MAX)
-
-# define ERANGE     1
-
 typedef struct s_list
 {
 	void			*content;
@@ -82,4 +73,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
 #endif

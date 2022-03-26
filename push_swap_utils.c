@@ -28,3 +28,17 @@ void    *error(const char *message)
         write(2, message, ft_strlen(message));
     return ((void *) 0);
 }
+
+t_bool   issorted(t_list *stack)
+{
+    t_list  *tmp;
+
+    tmp = stack;
+    while (tmp)
+    {
+        if (tmp->next && (*(int *)tmp->content > *(int *)tmp->next->content))
+            return (FALSE);
+        tmp = tmp->next;
+    }
+    return (TRUE);
+}

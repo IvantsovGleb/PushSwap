@@ -1,19 +1,5 @@
 #include "push_swap.h"
 
- t_bool   issorted(t_list *stack)
-{
-    t_list  *tmp;
-
-    tmp = stack;
-    while (tmp)
-    {
-        if (tmp->next && (*(int *)tmp->content > *(int *)tmp->next->content))
-            return (FALSE);
-        tmp = tmp->next;
-    }
-    return (TRUE);
-}
-
 static void    push_swap(t_list **stack_a)
 {
     t_list  *stack_b;
