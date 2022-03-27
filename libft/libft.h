@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsinestr <fsinestr@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: fsinestr <fsinestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:36:45 by fsinestr          #+#    #+#             */
-/*   Updated: 2022/01/05 22:11:21 by fsinestr         ###   ########.fr       */
+/*   Updated: 2022/03/27 15:44:20 by fsinestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
-int     ft_isspace(int c);
-int     ft_isupper(int c);
+int		ft_isspace(int c);
+int		ft_isupper(int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 
@@ -40,7 +40,6 @@ int		ft_memcmp(const void *b1, const void *b2, size_t len);
 void	*ft_memchr(const void *s, int c, size_t n);
 
 int		ft_atoi(const char *nptr);
-long    ft_strtol(const char *nptr, char **endptr, int base, int *errn);
 char	*ft_itoa(int n);
 void	*ft_calloc(size_t number, size_t size);
 

@@ -1,86 +1,98 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_array.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fsinestr <fsinestr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/27 14:51:28 by fsinestr          #+#    #+#             */
+/*   Updated: 2022/03/27 15:23:02 by fsinestr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static int  duplicates(const int *array, int n)
+static int	duplicates(const int *array, int n)
 {
-    int i;
-    int j;
-    int el;
+	int	i;
+	int	j;
+	int	el;
 
-    i = 0;
-    while (i < n - 1)
-    {
-        el = array[i];
-        j = i + 1;
-        while (j < n)
-        {
-            if (el == array[j])
-                return (FALSE);
-            j++;
-        }
-        i++;
-    }
-    return (TRUE);
+	i = 0;
+	while (i < n - 1)
+	{
+		el = array[i];
+		j = i + 1;
+		while (j < n)
+		{
+			if (el == array[j])
+				return (FALSE);
+			j++;
+		}
+		i++;
+	}
+	return (TRUE);
 }
 
-static int  *get_helper_array(char *params[], int n)
+static int	*get_helper_array(char *params[], int n)
 {
-    int *array;
-    int i;
+	int	*array;
+	int	i;
 
-    array = malloc( n * sizeof(*array));
-    if (!array)
-        return ((void *) 0);
-    i = 0;
-    while (params[i])
-    {
-        if (!parse_int(params[i], &array[i]))
-            return (free_array(&array));
-        i++;
-    }
-    return (array);
+	array = malloc(n * sizeof(*array));
+	if (!array)
+		return ((void *) 0);
+	i = 0;
+	while (params[i])
+	{
+		if (!parse_int(params[i], &array[i]))
+			return (free_array(&array));
+		i++;
+	}
+	return (array);
 }
 
-static void    swap(int *from, int *to)
+static void	swap(int *from, int *to)
 {
-    int tmp;
+	int	tmp;
 
-    tmp = *to;
-    *to = *from;
-    *from = tmp;
+	tmp = *to;
+	*to = *from;
+	*from = tmp;
 }
 
-void    bubble_sort(int *array, int n)
+void	bubble_sort(int *array, int n)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (i < n - 1)
-    {
-        j = i + 1;
-        while (j < n)
-        {
-            if (array[i] > array[j])
-                swap(&array[i], &array[j]);
-            j++;
-        }
-        i++;
-    }
+	i = 0;
+	while (i < n - 1)
+	{
+		j = i + 1;
+		while (j < n)
+		{
+			if (array[i] > array[j])
+				swap(&array[i], &array[j]);
+			j++;
+		}
+		i++;
+	}
 }
 
-int *init_array(t_arg *arg)
+int	*init_array(t_arg *arg)
 {
-    int *array;
+	int	*array;
 
-    array = get_helper_array(arg->params, arg->n);
-    if (!array)
-    {
-        return (error("Error\n"));
-    }
-    if (!duplicates(array, arg->n))
-    {
-        free_array(&array);
-        return (error("Error\n"));
-    }
-    return (array);
+	array = get_helper_array(arg->params, arg->n);
+	if (!array)
+	{
+		return (error("Error\n"));
+	}
+	if (!duplicates(array, arg->n))
+	{
+		free_array(&array);
+		return (error("Error\n"));
+	}
+	return (array);
 }
