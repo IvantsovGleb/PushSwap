@@ -6,7 +6,7 @@
 /*   By: fsinestr <fsinestr@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:36:45 by fsinestr          #+#    #+#             */
-/*   Updated: 2021/10/27 15:08:17 by fsinestr         ###   ########.fr       */
+/*   Updated: 2022/03/30 22:29:10 by fsinestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,37 @@ static size_t	ft_slenc(const char *s, char c)
 	return (i);
 }
 
+static char	*ft_take_word(const char *s, size_t len)
+{
+	char	*word;
+
+	word = malloc(len + 1);
+	if (!word)
+		return (NULL);
+	ft_strlcpy(word, s, len + 1);
+	return (word);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**arrs;
 	size_t	i;
 	size_t	start;
+	size_t	n;
 
 	if (!s)
 		return (NULL);
-	arrs = malloc((ft_countokens(s, c) + 1) * sizeof(char *));
+	n = ft_countokens(s, c);
+	arrs = malloc((n + 1) * sizeof(char *));
 	if (!arrs)
 		return (arrs);
 	i = 0;
 	start = 0;
-	while (i < ft_countokens(s, c))
+	while (i < n)
 	{
 		while (s[start] == c)
 			start++;
-		arrs[i] = ft_substr(s, (unsigned char)start, ft_slenc(&s[start], c));
+		arrs[i] = ft_take_word(&s[start], ft_slenc(&s[start], c));
 		if (!arrs[i++])
 			return (ft_memfree(arrs));
 		start = start + ft_slenc(&s[start], c);

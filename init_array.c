@@ -6,7 +6,7 @@
 /*   By: fsinestr <fsinestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 14:51:28 by fsinestr          #+#    #+#             */
-/*   Updated: 2022/03/27 15:23:02 by fsinestr         ###   ########.fr       */
+/*   Updated: 2022/03/30 22:22:38 by fsinestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ static int	*get_helper_array(char *params[], int n)
 	while (params[i])
 	{
 		if (!parse_int(params[i], &array[i]))
+		{
 			return (free_array(&array));
+		}
 		i++;
 	}
 	return (array);
@@ -73,7 +75,9 @@ void	bubble_sort(int *array, int n)
 		while (j < n)
 		{
 			if (array[i] > array[j])
+			{
 				swap(&array[i], &array[j]);
+			}
 			j++;
 		}
 		i++;
@@ -91,7 +95,7 @@ int	*init_array(t_arg *arg)
 	}
 	if (!duplicates(array, arg->n))
 	{
-		free_array(&array);
+		free(array);
 		return (error("Error\n"));
 	}
 	return (array);

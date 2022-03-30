@@ -6,7 +6,7 @@
 /*   By: fsinestr <fsinestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 14:51:33 by fsinestr          #+#    #+#             */
-/*   Updated: 2022/03/27 14:56:16 by fsinestr         ###   ########.fr       */
+/*   Updated: 2022/03/30 22:24:21 by fsinestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,22 @@ int	main(int argc, char *argv[])
 	int		*array;
 	t_list	*stack;
 
-	array = (void *) 0;
 	stack = (void *) 0;
 	if (!extract_params(argc, argv, &arg))
 		return (0);
 	array = init_array(&arg);
-	if (array)
-	{
-		stack = init_stack(array, arg.n);
-		if (stack)
-		{
-			push_swap(&stack);
-		}
-	}
-	free_array(&array);
-	free_stack(&stack);
 	if (argc == 2)
 		mem_free(arg.params);
+	if (!array)
+		return (0);
+	stack = init_stack(array, arg.n);
+	if (!stack)
+	{
+		free(array);
+		return (0);
+	}
+	push_swap(&stack);
+	free(array);
+	ft_lstclear(&stack, free);
 	return (0);
 }

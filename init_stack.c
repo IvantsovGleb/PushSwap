@@ -6,7 +6,7 @@
 /*   By: fsinestr <fsinestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 14:51:30 by fsinestr          #+#    #+#             */
-/*   Updated: 2022/03/27 15:28:31 by fsinestr         ###   ########.fr       */
+/*   Updated: 2022/03/30 22:23:17 by fsinestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,12 @@ t_list	*init_stack(int *ia, int n)
 		return ((void *) 0);
 	ind_a = generate_index_array(ia, ia_cp, n);
 	if (!ind_a)
-		return (free_array(&ia_cp));
-	stack_a = generate_stack(ind_a, n);
-	if (!stack_a)
 	{
 		free(ia_cp);
-		return (free_array(&ind_a));
+		free(ind_a);
+		return ((void *) 0);
 	}
+	stack_a = generate_stack(ind_a, n);
 	free(ia_cp);
 	free(ind_a);
 	return (stack_a);
